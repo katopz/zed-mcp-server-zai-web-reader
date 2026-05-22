@@ -1,0 +1,10 @@
+id = "mcp-server-zai-web-reader"
+name = "Z.AI Web Reader MCP Server"
+description = "Model Context Protocol Server for z.ai Web Reader"
+version = "0.1.0"
+schema_version = 1
+authors = ["katopz <katopz@katopz.com>"]
+repository = "https://github.com/katopz/zed-mcp-server-zai-web-reader"
+
+[context_servers.mcp-server-zai-web-reader]
+name = "Z.AI Web Reader MCP Server"
