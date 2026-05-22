@@ -6,7 +6,7 @@ use zed_extension_api::{
 };
 
 const PACKAGE_NAME: &str = "supergateway";
-const PACKAGE_VERSION: &str = "latest";
+const PACKAGE_VERSION: &str = "3.4.3";
 const MCP_SERVER_URL: &str = "https://api.z.ai/api/mcp/web_reader/mcp";
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -28,8 +28,7 @@ impl zed::Extension for ZaiWebReaderMcpExtension {
         _context_server_id: &ContextServerId,
         project: &Project,
     ) -> Result<Command> {
-        let version = zed::npm_package_installed_version(PACKAGE_NAME)?;
-        if version.as_deref() != Some(PACKAGE_VERSION) {
+        if zed::npm_package_installed_version(PACKAGE_NAME)?.is_none() {
             zed::npm_install_package(PACKAGE_NAME, PACKAGE_VERSION)?;
         }
 
