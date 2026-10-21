@@ -10,3 +10,6 @@ target/
 *.pdb
 
 extension.wasm
+
+# local env (never commit; template is .env.example)
+.env
