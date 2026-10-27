@@ -62,6 +62,29 @@ The ZAI Web Reader MCP Server provides this tool to the LLM:
 
 The extension uses [supergateway](https://github.com/supercorp-ai/supergateway) to bridge the remote Streamable HTTP MCP server at `https://api.z.ai/api/mcp/web_reader/mcp` to a local stdio connection that Zed can communicate with.
 
+
+## Lighter alternative: connect over HTTP, no bridge
+
+Zed can talk to the remote endpoint directly. Declare the server under the same
+id in your `settings.json` and the extension's bridge is not started:
+
+```json
+{
+  "context_servers": {
+    "mcp-server-zai-web-reader": {
+      "url": "https://api.z.ai/api/mcp/web_reader/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_ZAI_API_KEY"
+      }
+    }
+  }
+}
+```
+
+Tool names stay the same. This saves one Node.js process per open project,
+and one per external agent session (for example Claude via ACP), because Zed
+hands agents the HTTP server instead of the bridge command.
+
 ## Development
 
 Clone the project and build:
